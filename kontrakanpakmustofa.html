@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontrakan Baiti Jannati - Manajemen Pembayaran Profesional</title>
+    <meta name="description" content="Sistem pembayaran kontrakan Baiti Jannati: transparan, terpercaya, dan otomatis.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+        .cta-button:active {
+            transform: translateY(-2px);
+        }
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            margin-bottom: 0;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        /* Visi & Misi Section */
+        .visi-section {
+            background: linear-gradient(135deg, rgba(52, 73, 94, 0.2) 0%, rgba(44, 62, 80, 0.2) 100%);
+        }
+        .visi-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .visi-quote {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        .visi-subtitle {
+            font-size: 1.15rem;
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        /* Rules Grid */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .rule-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .rule-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+        .rule-card h3 {
+            color: #667eea;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .rule-card p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        /* Pembayaran Section */
+        .pembayaran-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.06) 100%);
+        }
+        .pembayaran-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .payment-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .payment-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(102, 126, 234, 0.25);
+        }
+        .payment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .price-original {
+            text-decoration: line-through;
+            color: #f59e0b;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .price-new {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #10b981;
+            letter-spacing: -0.5px;
+        }
+        .badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #000;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge.installment {
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e90ff 100%);
+        }
+        .payment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .detail-item {
+            background: rgba(102, 126, 234, 0.08);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        .detail-item:hover {
+            background: rgba(102, 126, 234, 0.12);
+            transform: translateY(-2px);
+        }
+        .detail-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        .detail-item p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .detail-item p strong {
+            color: #10b981;
+            display: inline;
+        }
+        /* Penghuni Section */
+        .penghuni-section {
+            background: #0f1419;
+        }
+        .residents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .resident-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        .resident-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.25);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .resident-card.installment {
+            border: 2px solid #0ea5e9;
+            background: rgba(14, 165, 233, 0.08);
+        }
+        .resident-card.installment:hover {
+            box-shadow: 0 25px 50px rgba(14, 165, 233, 0.25);
+        }
+        .resident-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+        }
+        .resident-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+        .resident-card:hover .resident-image img {
+            transform: scale(1.08);
+        }
+        .resident-info {
+            padding: 2.2rem;
+        }
+        .resident-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+        .resident-card.installment .resident-name {
+            color: #0ea5e9;
+        }
+        .resident-detail {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.08);
+        }
+        .resident-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .resident-detail strong {
+            color: #10b981;
+            font-weight: 600;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.8rem;
+        }
+        .installment-badge {
+            background: rgba(14, 165, 233, 0.2);
+            color: #7dd3fc;
+        }
+        /* Filosofi Section */
+        .filosofi-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.08) 0%, rgba(245, 87, 108, 0.08) 100%);
+        }
+        .filosofi-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .filosofi-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 147, 251, 0.15);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .filosofi-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(240, 147, 251, 0.3);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.1);
+            transform: translateY(-4px);
+        }
+        .filosofi-question {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f472b6;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        .filosofi-hint {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        .filosofi-answer {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(102, 126, 234, 0.15);
+        }
+        .filosofi-answer.show {
+            max-height: 400px;
+            opacity: 1;
+            padding: 2rem;
+        }
+        .filosofi-answer strong {
+            color: #f472b6;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .filosofi-answer p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        /* Motivasi Section */
+        .motivasi-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            text-align: center;
+        }
+        .motivasi-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .motivasi-quote {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+        .motivasi-subtitle {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .motivasi-desc {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .motivasi-desc:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .motivasi-desc strong {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+        .motivasi-desc p {
+            color: #b0b0b0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        /* SeaBank Payment Section */
+        .seabank-section {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(2, 132, 199, 0.08) 100%);
+        }
+        .seabank-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .seabank-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .seabank-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+        .seabank-content {
+            position: relative;
+            z-index: 1;
+        }
+        .bank-logo {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #0ea5e9;
+        }
+        .bank-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 1rem;
+        }
+        .account-details {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+        .account-label {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+        .account-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            font-family: monospace;
+            background: rgba(10, 20, 40, 0.5);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            word-break: break-all;
+            overflow-wrap: anywhere;
+        }
+        @media (max-width: 480px) {
+            .account-number {
+                font-size: 1.2rem !important;
+                padding: 0.8rem !important;
+                letter-spacing: 1px;
+            }
+        }
+        .account-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+        .copy-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem auto;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+        }
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+        }
+        .qr-container {
+            display: inline-block;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px dashed rgba(14, 165, 233, 0.5);
+        }
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-weight: 600;
+            margin: 0 auto;
+        }
+        /* Submissions Dashboard Section */
+        .submissions-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 12, 27, 0.9) 100%);
+        }
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .dashboard-title {
+            font-size: 1.8rem;
+            color: #e0e0e0;
+            font-weight: 600;
+        }
+        .submission-form {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            backdrop-filter: blur(10px);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #b0b0b0;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 12px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            backdrop-filter: blur(10px);
+        }
+        .table-header {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            color: #9ca3af;
+            text-align: left;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .table-row {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.2s ease;
+        }
+        .table-row:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        .table-cell {
+            padding: 1.2rem 1.5rem;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .status-confirmed {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .status-installment {
+            background: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+        .name-cell {
+            display: flex;
+            align-items: center;
+        }
+        .stats-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            flex: 1;
+            min-width: 150px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+        .stat-confirmed .stat-value {
+            color: #10b981;
+        }
+        .stat-pending .stat-value {
+            color: #f59e0b;
+        }
+        .stat-installment .stat-value {
+            color: #0ea5e9;
+        }
+        .stat-total .stat-value {
+            color: #667eea;
+        }
+        .spreadsheet-link {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(102, 126, 234, 0.15);
+            color: #667eea;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .spreadsheet-link:hover {
+            background: rgba(102, 126, 234, 0.25);
+            transform: translateY(-2px);
+        }
+        .spreadsheet-link i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        /* Footer */
+        footer {
+            background: rgba(15, 20, 25, 0.9);
+            padding: 2.5rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #808080;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 3%;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                font-size: 0.85rem;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            section {
+                padding: 4rem 3%;
+            }
+            .residents-grid {
+                grid-template-columns: 1fr;
+            }
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            .motivasi-quote {
+                font-size: 2rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            section h2 {
+                font-size: 1.5rem;
+            }
+            .residents-grid {
+                gap: 1.5rem;
+            }
+            .resident-card {
+                border-radius: 12px;
+            }
+            .filosofi-card {
+                padding: 2rem;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .stats-container {
+                flex-direction: column;
+            }
+        }
+        /* Preview Upload */
+        .preview-container {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .preview-image {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 12px;
+            border: 2px dashed rgba(102, 126, 234, 0.3);
+            display: none;
+        }
+        /* Alerts */
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: slideIn 0.4s ease-out;
+            font-size: 0.9rem;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .alert-success {
+            background: rgba(16, 185, 129, 0.9);
+        }
+        .alert-error {
+            background: rgba(239, 68, 68, 0.9);
+        }
+        .alert i {
+            margin-right: 0.5rem;
+        }
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #b0b0b0;
+            transition: all 0.3s ease;
+        }
+        .nav-links.active {
+            display: flex;
+        }
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">🏠 Baiti Jannati</div>
+        <ul class="nav-links">
+            <li><a href="#visi">Visi & Misi</a></li>
+            <li><a href="#pembayaran">Pembayaran</a></li>
+            <li><a href="#penghuni">Penghuni</a></li>
+            <li><a href="#seabank">SeaBank</a></li>
+            <li><a href="#submissions">Spreadsheet</a></li>
+            <li><a href="#filosofi">Filosofi</a></li>
+            <li><a href="#motivasi">Motivasi</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Kontrakan Baiti Jannati</h1>
+            <p>Rumah Impian Bersama, Membangun Masa Depan Bersama</p>
+            <button class="cta-button" onclick="document.getElementById('visi').scrollIntoView({behavior: 'smooth'})">Jelajahi Selengkapnya</button>
+        </div>
+    </section>
+    <!-- Visi & Misi Section -->
+    <section class="visi-section" id="visi">
+        <h2>Visi & Misi</h2>
+        <div class="visi-container">
+            <div class="visi-quote">"Ngone awak dewe dinggo ngupoyo"</div>
+            <p class="visi-subtitle">Kita bersama-sama untuk maju, berkembang, dan meraih kesuksesan bersama</p>
+            <h3 style="color: #e0e0e0; margin-top: 3rem; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 600;">Aturan yang Berlaku</h3>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h3>1️⃣ Hemat Energi</h3>
+                    <p>Hemat penggunaan listrik dan air untuk efisiensi bersama</p>
+                </div>
+                <div class="rule-card">
+                    <h3>2️⃣ Pembayaran Tepat Waktu</h3>
+                    <p>Bayar tepat waktu sesuai kesepakatan untuk kenyamanan bersama</p>
+                </div>
+                <div class="rule-card">
+                    <h3>3️⃣ Kebersihan</h3>
+                    <p>Jaga kebersihan ruang bersama dengan gotong royong</p>
+                </div>
+                <div class="rule-card">
+                    <h3>4️⃣ Waktu & Tenaga</h3>
+                    <p>Hormati waktu dan tenaga setiap penghuni lainnya</p>
+                </div>
+                <div class="rule-card">
+                    <h3>5️⃣ Sumber Daya</h3>
+                    <p>Manfaatkan sumber daya secara optimal dan berkelanjutan</p>
+                </div>
+                <div class="rule-card">
+                    <h3>6️⃣ Gotong Royong</h3>
+                    <p>Bangun kesadaran kolektif untuk kemajuan bersama</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pembayaran Section -->
+    <section class="pembayaran-section" id="pembayaran">
+        <h2>Sistem Pembayaran</h2>
+        <div class="pembayaran-container">
+            <div class="payment-card">
+                <div class="payment-header">
+                    <div>
+                        <strong>Total Kontrakan per Tahun:</strong>
+                        <br>
+                        <span class="price-new">Rp 16.000.000</span>
+                    </div>
+                    <span class="badge">7 Penghuni</span>
+                </div>
+            </div>
+            <div class="payment-card">
+                <strong style="font-size: 1.15rem; color: #667eea; display: block; margin-bottom: 2rem; font-weight: 600;">Per Orang untuk 6 Bulan</strong>
+                <div class="payment-details">
+                    <div class="detail-item">
+                        <strong>Kontrakan (6 Bulan)</strong>
+                        <p>Rp 16.000.000 ÷ 2 ÷ 7 penghuni<br><strong style="color: #10b981;">= Rp 1.142.857</strong></p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Air + Sampah + WiFi (Per Bulan)</strong>
+                        <p>Rp 40.000 × 6 bulan<br><strong style="color: #10b981;">= Rp 240.000</strong></p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Listrik (Per Bulan)</strong>
+                        <p>Rp 20.000 × 6 bulan<br><strong style="color: #10b981;">= Rp 120.000</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-card" style="margin-top: 2rem; background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2);">
+                <strong style="font-size: 1.15rem; color: #10b981; display: block; margin-bottom: 1.5rem; font-weight: 600;">Total Per Orang (6 Bulan)</strong>
+                <div style="font-size: 2rem; font-weight: 700; color: #10b981; text-align: center;">Rp 1.600.000</div>
+                <p style="color: #b0b0b0; text-align: center; margin-top: 1rem; font-size: 0.9rem;">Kontrakan + Utilitas + Listrik<br><small>*Skema cicilan: Rp 800.000 × 2 (Jan & Jul 2026)</small></p>
+            </div>
+        </div>
+    </section>
+    <!-- Penghuni Section -->
+    <section class="penghuni-section" id="penghuni">
+        <h2>Penghuni Kontrakan</h2>
+        <div class="residents-grid">
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="wapex.jpeg" alt="Wapex" onerror="this.parentElement.textContent='W'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Wapex</div>
+                    <div class="resident-detail">
+                        <span>Total Pembayaran:</span>
+                        <strong>Rp 1.600.000</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Tenggat Waktu:</span>
+                        <strong>31 des 2025</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="faiq.jpeg" alt="Faiq" onerror="this.parentElement.textContent='F'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Faiq</div>
+                    <div class="resident-detail">
+                        <span>Total Pembayaran:</span>
+                        <strong>Rp 1.600.000</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Tenggat Waktu:</span>
+                        <strong>31 des 2025</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="resident-card installment">
+                <div class="resident-image" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
+                    <img src="jeki.jpeg" alt="Jeckie" onerror="this.parentElement.textContent='J'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Jeckie</div>
+                    <span class="status-badge">Bayar Cicilan</span>
+                    <div class="resident-detail">
+                        <span>Cicilan 1:</span>
+                        <strong>Rp 800.000 (31 Jan 2026)</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Cicilan 2:</span>
+                        <strong>Rp 800.000 (31 feb 2026)</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="moden.jpeg" alt="Moden" onerror="this.parentElement.textContent='M'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Moden</div>
+                    <div class="resident-detail">
+                        <span>Total Pembayaran:</span>
+                        <strong>Rp 1.600.000</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Tenggat Waktu:</span>
+                        <strong>31 des 2025</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="kamal.jpeg" alt="Kamal" onerror="this.parentElement.textContent='K'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Kamal</div>
+                    <div class="resident-detail">
+                        <span>Total Pembayaran:</span>
+                        <strong>Rp 1.600.000</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Tenggat Waktu:</span>
+                        <strong>31 des 2025</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="algifta.jpeg" alt="Algifta" onerror="this.parentElement.textContent='A'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Algifta</div>
+                    <div class="resident-detail">
+                        <span>Total Pembayaran:</span>
+                        <strong>Rp 1.600.000</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Tenggat Waktu:</span>
+                        <strong>31 des 2025</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+            <!-- ✅ YUSUF - Penghuni ke-7 dengan skema cicilan seperti Jeckie -->
+            <div class="resident-card installment">
+                <div class="resident-image" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
+                    <img src="yusuf.jpeg" alt="Yusuf" onerror="this.parentElement.textContent='Y'" style="object-fit: cover;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Yusuf</div>
+                    <span class="status-badge">Bayar Cicilan</span>
+                    <div class="resident-detail">
+                        <span>Cicilan 1:</span>
+                        <strong>Rp 800.000 (31 Jan 2026)</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Cicilan 2:</span>
+                        <strong>Rp 800.000 (31 feb 2026)</strong>
+                    </div>
+                    <div class="resident-detail">
+                        <span>Status:</span>
+                        <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SeaBank Payment Section -->
+    <section class="seabank-section" id="seabank">
+        <h2>Pembayaran melalui SeaBank</h2>
+        <div class="seabank-container">
+            <div class="seabank-card">
+                <div class="seabank-content">
+                    <div class="bank-logo">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="bank-name">SeaBank Indonesia</div>
+                    <div class="account-details">
+                        <div class="account-label">Nomor Rekening</div>
+                        <div class="account-number" id="accountNumber">9016 3497 1117</div>
+                        <div class="account-label">Atas Nama</div>
+                        <div class="account-name">Muhammad Ibnu Sina Nur Amanullah</div>
+                        <button class="copy-btn" onclick="copyAccountNumber()">
+                            <i class="fas fa-copy"></i> Salin Nomor Rekening
+                        </button>
+                    </div>
+                    <div class="qr-container">
+                        <div class="qr-placeholder">
+                            <div>
+                                <i class="fas fa-qrcode fa-3x mb-2" style="color: #0ea5e9;"></i>
+                                <div>Scan untuk QRIS SeaBank</div>
+                                <div class="text-gray-500 text-sm mt-1">*QR hanya ilustrasi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-gray-400">
+                        <p class="mb-2">
+                            <i class="fas fa-info-circle text-blue-400 mr-2"></i>
+                            Setelah transfer, konfirmasi di bawah atau 
+                            <a href="#submissions" class="text-blue-400 hover:underline">klik di sini</a>.
+                        </p>
+                        <p>
+                            <i class="fas fa-shield-alt text-green-400 mr-2"></i>
+                            Data otomatis tercatat di spreadsheet real-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Submissions Dashboard Section -->
+    <section class="submissions-section" id="submissions">
+        <h2>Dashboard Pembayaran (Spreadsheet)</h2>
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <i class="fas fa-table mr-2"></i> Data Pembayaran Penghuni
+                </div>
+                <a href="https://docs.google.com/spreadsheets/d/1xUUowEAcH6ttu6a6wHscLdPLMv8ZqlM1MeAwY1qcJ04/edit?usp=sharing" target="_blank" class="spreadsheet-link">
+                    <i class="fas fa-arrow-up-right-from-square"></i> Lihat Spreadsheet Lengkap
+                </a>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card stat-total">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Total Penghuni</div>
+                </div>
+                <div class="stat-card stat-confirmed">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Sudah Bayar</div>
+                </div>
+                <div class="stat-card stat-pending">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Menunggu Pembayaran</div>
+                </div>
+                <div class="stat-card stat-installment">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Skema Cicilan</div>
+                </div>
+            </div>
+            <div class="submission-form">
+                <h3 class="dashboard-title mb-3">Konfirmasi / Revisi Pembayaran</h3>
+                <form id="paymentForm">
+                    <input type="hidden" id="rowId">
+                    <input type="hidden" id="oldFileId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama" placeholder="Contoh: Wapex" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Jumlah Transfer</label>
+                            <input type="text" class="form-control" id="jumlah" placeholder="Contoh: 1600000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tanggal Transfer</label>
+                            <input type="date" class="form-control" id="tanggal" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Bukti Transfer (Screenshot)</label>
+                            <input type="file" class="form-control" id="bukti" accept="image/*" required>
+                            <div class="preview-container">
+                                <img id="preview" class="preview-image" alt="Preview bukti">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane mr-2"></i> Kirim / Perbarui Data
+                    </button>
+                </form>
+            </div>
+            <div class="table-container" style="overflow-x: auto;">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th class="table-header">No</th>
+                            <th class="table-header">Nama</th>
+                            <th class="table-header">Jumlah</th>
+                            <th class="table-header">Tanggal</th>
+                            <th class="table-header">Status</th>
+                            <th class="table-header">Bukti</th>
+                            <th class="table-header">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentTableBody">
+                        <!-- Data akan diisi otomatis -->
+                        <tr class="table-row">
+                            <td class="table-cell">1</td>
+                            <td class="table-cell">
+                                <div class="name-cell">
+                                    <div class="avatar">W</div>
+                                    <span>Wapex</span>
+                                </div>
+                            </td>
+                            <td class="table-cell">Rp 1.600.000</td>
+                            <td class="table-cell">–</td>
+                            <td class="table-cell">
+                                <span class="status-badge status-pending">Menunggu</span>
+                            </td>
+                            <td class="table-cell">–</td>
+                            <td class="table-cell">
+                                <button class="btn-action btn-edit" data-row="0" data-nama="Wapex" data-jumlah="1600000" data-tgl="" data-fileid="">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="table-cell">2</td>
+                            <td class="table-cell">
+                                <div class="name-cell">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #0ea5e9, #0284c7);">J</div>
+                                    <span>Jeckie</span>
+                                </div>
+                            </td>
+                            <td class="table-cell">Rp 800.000</td>
+                            <td class="table-cell">31 Jan 2026</td>
+                            <td class="table-cell">
+                                <span class="status-badge status-pending">Menunggu</span>
+                            </td>
+                            <td class="table-cell">–</td>
+                            <td class="table-cell">
+                                <button class="btn-action btn-edit" data-row="1" data-nama="Jeckie" data-jumlah="800000" data-tgl="2026-01-31" data-fileid="">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="table-cell">3</td>
+                            <td class="table-cell">
+                                <div class="name-cell">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #0ea5e9, #0284c7);">Y</div>
+                                    <span>Yusuf</span>
+                                </div>
+                            </td>
+                            <td class="table-cell">Rp 800.000</td>
+                            <td class="table-cell">31 Jan 2026</td>
+                            <td class="table-cell">
+                                <span class="status-badge status-pending">Menunggu</span>
+                            </td>
+                            <td class="table-cell">–</td>
+                            <td class="table-cell">
+                                <button class="btn-action btn-edit" data-row="2" data-nama="Yusuf" data-jumlah="800000" data-tgl="2026-01-31" data-fileid="">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- Filosofi Section -->
+    <section class="filosofi-section" id="filosofi">
+        <h2>Filosofi Kontrakan</h2>
+        <div class="filosofi-container">
+            <div class="filosofi-card" onclick="toggleAnswer(this)">
+                <div class="filosofi-question">Apa arti "Baiti Jannati"?</div>
+                <p class="filosofi-hint">🔽 Klik untuk melihat jawaban</p>
+                <div class="filosofi-answer">
+                    <strong>"Rumahku adalah Surgaku"</strong>
+                    <p>Baiti Jannati berasal dari bahasa Arab yang berarti "Rumahku adalah Surgaku". Filosofi ini mengajarkan bahwa rumah adalah tempat ternyaman dan terindah, tempat kita membangun kebahagiaan dan kedamaian bersama keluarga dan orang-orang tercinta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Motivasi Section -->
+    <section class="motivasi-section" id="motivasi">
+        <h2>Motivasi & Inspirasi</h2>
+        <div class="motivasi-container">
+            <div class="motivasi-quote">Qolil wa Dawim</div>
+            <p class="motivasi-subtitle">Sedikit tetapi Istiqomah. Lebih baik melakukan hal kecil secara konsisten daripada hal besar yang tidak berkelanjutan.</p>
+            <div class="motivasi-desc">
+                <strong>Filosofi Penghuni</strong>
+                <p>Di Kontrakan Baiti Jannati, kami percaya bahwa kesuksesan dibangun dari langkah-langkah kecil yang konsisten. Setiap penghuni adalah keluarga, setiap langkah adalah kemajuan, dan setiap hari adalah kesempatan baru untuk tumbuh bersama. Mari wujudkan impian kita dengan istiqomah dan semangat gotong royong!</p>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kontrakan Baiti Jannati. Rumah Impian Bersama | Berjuang Bersama, Sukses Bersama</p>
+    </footer>
+    <script>
+        // Navigation Hamburger
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        // Salin nomor rekening
+        function copyAccountNumber() {
+            const formatted = document.getElementById('accountNumber').textContent;
+            const raw = formatted.replace(/\s/g, '');
+            navigator.clipboard.writeText(raw).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Disalin!';
+                btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Salin Nomor Rekening';
+                    btn.style.background = '';
+                }, 2000);
+            });
+        }
+        // Preview gambar
+        document.getElementById('bukti').addEventListener('change', function(e) {
+            const preview = document.getElementById('preview');
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    preview.src = reader.result;
+                    preview.style.display = 'inline-block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+        // Submit form
+        document.getElementById('paymentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            const nama = document.getElementById('nama').value.trim();
+            const jumlahStr = document.getElementById('jumlah').value.trim();
+            const tanggal = document.getElementById('tanggal').value;
+            const file = document.getElementById('bukti').files[0];
+            const rowId = document.getElementById('rowId').value;
+            const oldFileId = document.getElementById('oldFileId').value;
+            if (!nama || !jumlahStr || !tanggal) {
+                showAlert("Isi semua kolom!", "error");
+                return;
+            }
+            const jumlah = parseInt(jumlahStr);
+            if (isNaN(jumlah)) {
+                showAlert("Jumlah harus angka!", "error");
+                return;
+            }
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+            try {
+                let imageBase64 = "";
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                        throw new Error("File maks 5 MB");
+                    }
+                    if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
+                        throw new Error("Format harus JPG/PNG");
+                    }
+                    const reader = new FileReader();
+                    await new Promise((resolve) => {
+                        reader.onload = resolve;
+                        reader.readAsDataURL(file);
+                    });
+                    imageBase64 = reader.result;
+                }
+                const payload = { nama, jumlah, tanggal };
+                if (rowId !== "") payload.rowId = rowId;
+                if (oldFileId) payload.oldFileId = oldFileId;
+                if (imageBase64) {
+                    payload.image = imageBase64;
+                    payload.filename = file.name;
+                    payload.mimeType = file.type;
+                }
+                // 🔥 GANTI INI DENGAN WEB APP ID ANDA DARI GOOGLE APPS SCRIPT
+                const res = await fetch("https://script.google.com/macros/s/AKfycbxzeDxGNCpNalXo-FKcLGf3Byl6qfQmbMvcZf7Ac34fuAd2gwQFE5eocfyUceLc16u_/exec", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    showAlert(result.message, "success");
+                    document.getElementById('paymentForm').reset();
+                    document.getElementById('preview').style.display = 'none';
+                    document.getElementById('rowId').value = "";
+                    document.getElementById('oldFileId').value = "";
+                    loadData(); // refresh tabel
+                } else {
+                    throw new Error(result.error || "Gagal menyimpan");
+                }
+            } catch (err) {
+                showAlert("❌ " + err.message, "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+        // Toggle filosofi answer
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.filosofi-answer');
+            answer.classList.toggle('show');
+        }
+        // Helper functions
+        function showAlert(message, type) {
+            const div = document.createElement('div');
+            div.className = `alert alert-${type}`;
+            div.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i> ${message}`;
+            document.body.appendChild(div);
+            setTimeout(() => {
+                div.style.opacity = '0';
+                setTimeout(() => div.remove(), 300);
+            }, 4000);
+        }
+        // Load data from Google Sheets
+        async function loadData() {
+            try {
+                const res = await fetch("https://script.google.com/macros/s/AKfycbxzeDxGNCpNalXo-FKcLGf3Byl6qfQmbMvcZf7Ac34fuAd2gwQFE5eocfyUceLc16u_/exec?action=read");
+                const data = await res.json();
+                if (data.success && data.rows) {
+                    const tbody = document.getElementById('paymentTableBody');
+                    tbody.innerHTML = data.rows.map((row, i) => `
+                        <tr class="table-row">
+                            <td class="table-cell">${row[0]}</td>
+                            <td class="table-cell">
+                                <div class="name-cell">
+                                    <div class="avatar">${row[1]?.charAt(0) || '?'}</div>
+                                    <span>${row[1]}</span>
+                                </div>
+                            </td>
+                            <td class="table-cell">Rp ${Number(row[2]).toLocaleString('id-ID')}</td>
+                            <td class="table-cell">${row[3]}</td>
+                            <td class="table-cell">
+                                <span class="status-badge status-${row[4]?.toLowerCase() === 'lunas' ? 'confirmed' : 'pending'}">
+                                    ${row[4]}
+                                </span>
+                            </td>
+                            <td class="table-cell">
+                                ${row[6] ? `<a href="${row[6]}" target="_blank" class="text-blue-400">Lihat</a>` : '–'}
+                            </td>
+                            <td class="table-cell">
+                                <button class="btn-action btn-edit" 
+                                    data-row="${row[0]}" 
+                                    data-nama="${row[1]}" 
+                                    data-jumlah="${row[2]}" 
+                                    data-tgl="${row[3]}" 
+                                    data-fileid="${row[5]}">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (e) {
+                console.error("Gagal memuat data:", e);
+            }
+        }
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        // Edit button handler
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-edit')) {
+                const btn = e.target;
+                const row = btn.getAttribute('data-row');
+                const nama = btn.getAttribute('data-nama');
+                const jumlah = btn.getAttribute('data-jumlah');
+                const tgl = btn.getAttribute('data-tgl');
+                const fileId = btn.getAttribute('data-fileid');
+
+                document.getElementById('rowId').value = row;
+                document.getElementById('nama').value = nama;
+                document.getElementById('jumlah').value = jumlah;
+                document.getElementById('tanggal').value = tgl;
+                document.getElementById('oldFileId').value = fileId;
+
+                // Scroll ke form
+                document.getElementById('paymentForm').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
