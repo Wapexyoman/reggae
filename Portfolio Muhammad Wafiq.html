@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Wafiq Zulfani - AI Engineering & Robotics</title>
+    <style>
+        :root {
+            --primary: #E91E63;
+            --primary-dark: #C2185B;
+            --primary-light: #F06292;
+            --secondary: #2196F3;
+            --dark: #1A1A2E;
+            --darker: #0F3460;
+            --light: #F5F7FA;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --border-color: #ECF0F1;
+            --success: #27AE60;
+            --warning: #F39C12;
+            --gradient-1: linear-gradient(135deg, #E91E63 0%, #9C27B0 100%);
+            --gradient-2: linear-gradient(135deg, #2196F3 0%, #00BCD4 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 16px rgba(0,0,0,0.15);
+            --shadow-lg: 0 12px 24px rgba(0,0,0,0.2);
+            --shadow-xl: 0 16px 40px rgba(0,0,0,0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            margin-top: 60px;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(33, 150, 243, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--darker);
+        }
+
+        .hero-content h1 .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-1);
+            animation: spin 8s linear infinite;
+            z-index: -1;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==================== STATS SECTION ==================== */
+        .stats {
+            padding: 3rem 2rem;
+            background: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -2rem auto 0;
+            position: relative;
+            z-index: 10;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(33, 150, 243, 0.05) 100%);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--darker);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-1);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(233, 30, 99, 0.05);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .highlight-item:hover {
+            background: rgba(233, 30, 99, 0.1);
+            transform: translateX(5px);
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .highlight-item p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* ==================== SKILLS SECTION ==================== */
+        .skills {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(33, 150, 243, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .skill-level {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            animation: fillSkill 1.5s ease-out forwards;
+        }
+
+        @keyframes fillSkill {
+            from { width: 0; }
+            to { width: var(--fill); }
+        }
+
+        /* ==================== EDUCATION SECTION ==================== */
+        .education {
+            padding: 5rem 2rem;
+        }
+
+        .education-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.2);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: var(--border-color);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ==================== ACHIEVEMENTS SECTION ==================== */
+        .achievements {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .achievements-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(33, 150, 243, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-1);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .achievement-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-frame {
+                width: 250px;
+                height: 300px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                margin-top: 50px;
+            }
+
+            .hero-container {
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .profile-frame {
+                width: 200px;
+                height: 250px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .about, .skills, .education, .achievements {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .skill-card, .achievement-card {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">MW</div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Beranda</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#skills" class="nav-link">Keahlian</a></li>
+                <li><a href="#education" class="nav-link">Pendidikan</a></li>
+                <li><a href="#achievements" class="nav-link">Pencapaian</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <button class="nav-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Halo, Saya <span class="highlight">Muhammad Wafiq Zulfani</span></h1>
+                <p>Mahasiswa Semester 1 Program Studi Robotika dan Kecerdasan Buatan di Politeknik Artificial Intelligence Budi Mulia Dua Yogyakarta. Passionate tentang membangun sistem cerdas, solusi otomasi inovatif, dan menjembatani kesenjangan antara keunggulan akademik dengan aplikasi real-world.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                        Hubungi Saya
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.open('https://instagram.com/wpx_elfaent', '_blank')">
+                        Ikuti Saya
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-frame">
+                    <img src="fotowapex.png" alt="Muhammad Wafiq Zulfani na'im">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number">Sem 1</div>
+            <div class="stat-label">Perjalanan Akademik</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Proyek Teknis</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">7+</div>
+            <div class="stat-label">Kompetensi Teknis</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">2028</div>
+            <div class="stat-label">Target Kelulusan D4</div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Saya adalah mahasiswa semester 1 Program Studi Robotika dan Kecerdasan Buatan di Politeknik Artificial Intelligence Budi Mulia Dua Yogyakarta. Dengan fondasi kuat dalam matematika, pemrograman, dan desain sistem, saya berkomitmen untuk mengembangkan solusi inovatif yang memanfaatkan teknologi AI terkini.</p>
+                <p>Perjalanan saya di dunia teknologi didorong oleh rasa ingin tahu dan keinginan untuk memberikan dampak nyata. Saya menggabungkan pengetahuan teoritis dengan pengalaman hands-on dalam machine learning, sistem IoT, dan aplikasi robotika. Saya sangat tertarik untuk menerapkan AI dalam menyelesaikan masalah real-world di bidang pertanian dan otomasi industri.</p>
+                <p>Di luar akademik, saya aktif menjalankan venture bisnis dan berkontribusi pada komunitas teknologi. Saya percaya pada pembelajaran berkelanjutan dan problem-solving kolaboratif.</p>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🎓</div>
+                    <p><strong>Keunggulan Akademik:</strong> Fondasi kuat dalam Aljabar Linear, Struktur Data, dan Dasar-dasar AI</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">💻</div>
+                    <p><strong>Profisiensi Teknis:</strong> Python, C++, JavaScript, HTML/CSS, Pemrograman IoT</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🤖</div>
+                    <p><strong>AI & Robotika:</strong> Machine Learning, Computer Vision, Embedded Systems, Otomasi</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🚀</div>
+                    <p><strong>Semangat Entrepreneurial:</strong> Passionate tentang inovasi dan membangun solusi scalable</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🌏</div>
+                    <p><strong>Pemikiran Global:</strong> Eager untuk melanjutkan studi lanjutan dan berkolaborasi internasional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="skills" id="skills">
+        <div class="skills-container">
+            <h2 class="section-title">Keahlian Teknis</h2>
+            <div class="skills-grid">
+                <!-- Programming Languages -->
+                <div class="skill-card">
+                    <h3>Bahasa Pemrograman</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="--fill: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>C++</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="--fill: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript & Web Development</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="--fill: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Competencies -->
+                <div class="skill-card">
+                    <h3>Kompetensi Inti</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Problem Solving & Analytical Thinking</span>
+                            <span class="skill-level">Mahir</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="--fill: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Komunikasi & Presentasi</span>
+                            <span class="skill-level">Mahir</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="--fill: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Kolaborasi & Leadership</span>
+                            <span class="skill-level">Mahir</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="--fill: 92%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section class="education" id="education">
+        <div class="education-container">
+            <h2 class="section-title">Pendidikan & Sertifikasi</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - Sekarang</div>
+                        <div class="timeline-title">Diploma Robotika dan Kecerdasan Buatan</div>
+                        <div class="timeline-subtitle">Politeknik Artificial Intelligence Budi Mulia Dua Yogyakarta</div>
+                        <div class="timeline-description">
+                            Mahasiswa aktif Semester 1 dengan fokus pada Artificial Intelligence, Robotika, Machine Learning, Aljabar Linear, Pemrograman Lanjut, dan Desain Sistem. Mengikuti proyek komprehensif yang mendemonstrasikan aplikasi praktis AI dalam skenario real-world.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025 - Mendatang</div>
+                        <div class="timeline-title">Pengembangan Proyek Capstone</div>
+                        <div class="timeline-subtitle">Aplikasi AI dalam Pertanian dan Otomasi</div>
+                        <div class="timeline-description">
+                            Merencanakan dan mengembangkan proyek capstone yang menggabungkan teknologi AI dengan aplikasi pertanian modern dan sistem otomasi industri untuk menyelesaikan masalah real-world.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Bersamaan</div>
+                        <div class="timeline-title">Pengembangan Profesional & Sertifikasi</div>
+                        <div class="timeline-subtitle">Program Pelatihan Khusus</div>
+                        <div class="timeline-description">
+                            Mengejar sertifikasi dalam Machine Learning, Cloud Computing, dan Integrasi Sistem IoT. Mengikuti kursus online dari platform terkemuka untuk memperkuat keterampilan yang relevan dengan industri.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section class="achievements" id="achievements">
+        <div class="achievements-container">
+            <h2 class="section-title">Pencapaian & Rekam Jejak</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3>Peserta Olimpiade Sains Nasional</h3>
+                    <p>Meraih pengakuan melalui partisipasi dalam olimpiade sains nasional (2025), mendemonstrasikan excellence dalam pemikiran ilmiah dan kemampuan problem-solving.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">📰</div>
+                    <h3>Ketua Bidang Jurnalistik</h3>
+                    <p>Menjabat sebagai Ketua Bidang Jurnalistik MA Salafiyah Kajen selama 2 tahun (2021-2023). Mengelola publikasi sekolah dan mengorganisir kegiatan jurnalistik berkala.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎬</div>
+                    <h3>Distribusi Film Dokumenter</h3>
+                    <p>Berhasil mendistribusikan lebih dari 1.500 film dokumenter ke seluruh Indonesia sebagai Ketua Sutradara Film Sekolah. Menciptakan karya dokumenter berkualitas tinggi untuk media pendidikan.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">💡</div>
+                    <h3>Inovasi & Problem Solving</h3>
+                    <p>Mengembangkan solusi inovatif untuk masalah real-world menggunakan teknologi AI dan IoT. Mendemonstrasikan kemampuan menjembatani gap antara riset dan aplikasi praktis.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🌟</div>
+                    <h3>Keterlibatan Komunitas</h3>
+                    <p>Anggota aktif organisasi mahasiswa yang fokus pada jurnalistik dan film studies. Berkontribusi pada kegiatan kampus sambil mempertahankan performa akademik yang kuat.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🚀</div>
+                    <h3>Inisiatif Entrepreneurial</h3>
+                    <p>Mengeksplorasi venture bisnis inovatif yang menggabungkan teknologi AI dengan agrikultur modern (usaha peternakan bebek smart dan bisnis perfume). Mendemonstrasikan mindset entrepreneurial bersamaan dengan kesuksesan akademik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hubungi Saya</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:wafiquli234@gmail.com" style="color: white; text-decoration: none;">wafiquli234@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>089540475251</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Yogyakarta, Indonesia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ikuti Saya</h3>
+                <div class="social-links">
+                    <a href="https://instagram.com/wpx_elfaent" target="_blank" class="social-link">IG</a>
+                    <a href="#" target="_blank" class="social-link">TW</a>
+                    <a href="#" target="_blank" class="social-link">LI</a>
+                    <a href="#" target="_blank" class="social-link">GH</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Muhammad Wafiq Zulfani. Hak cipta dilindungi. | Dibuat dengan ❤️ untuk keunggulan</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Skill animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .achievement-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            const menu = document.querySelector('.nav-menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+            menu.style.position = 'absolute';
+            menu.style.top = '60px';
+            menu.style.left = '0';
+            menu.style.right = '0';
+            menu.style.flexDirection = 'column';
+            menu.style.background = 'white';
+            menu.style.padding = '1rem';
+            menu.style.gap = '1rem';
+        });
+    </script>
+</body>
+</html>
