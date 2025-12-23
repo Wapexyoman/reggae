@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontrakan Baiti Jannati - Manajemen Pembayaran Profesional</title>
+    <meta name="description" content="Sistem pembayaran kontrakan Baiti Jannati: transparan, terpercaya, dan otomatis.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        /* ====== TABLE OF CONTENTS STYLES ====== */
+        .toc-toggle {
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            z-index: 999;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .toc-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .toc-sidebar {
+            position: fixed;
+            right: -350px;
+            top: 70px;
+            width: 320px;
+            height: calc(100vh - 70px);
+            background: rgba(15, 20, 25, 0.98);
+            border-left: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
+            z-index: 998;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        .toc-sidebar.open {
+            right: 0;
+        }
+        .toc-header {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .toc-list {
+            list-style: none;
+            padding: 1rem 0;
+        }
+        .toc-item {
+            margin: 0;
+        }
+        .toc-link {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.95rem;
+        }
+        .toc-link:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+            padding-left: 1.8rem;
+        }
+        .toc-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 997;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+        .toc-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* ====== NAVIGATION ====== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        /* ====== HERO SECTION ====== */
+        .hero {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35));
+            z-index: -1;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.7;
+            object-fit: cover;
+            filter: brightness(1.15) contrast(1.1);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            backdrop-filter: none;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            animation: typewriter 3s steps(24, end) forwards;
+        }
+        @keyframes typewriter {
+            from {
+                width: 0;
+                overflow: hidden;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            backdrop-filter: none;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            display: none;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+        /* ====== SECTIONS ====== */
+        section {
+            padding: 5rem 5%;
+            margin-bottom: 0;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        /* ====== VISI & MISI SECTION ====== */
+        .visi-section {
+            background: linear-gradient(135deg, rgba(52, 73, 94, 0.2) 0%, rgba(44, 62, 80, 0.2) 100%);
+        }
+        .visi-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .visi-quote {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        .visi-subtitle {
+            font-size: 1.15rem;
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .rule-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .rule-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+        .rule-card h3 {
+            color: #667eea;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .rule-card p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        /* ====== PEMBAYARAN SECTION ====== */
+        .pembayaran-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.06) 100%);
+        }
+        .pembayaran-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .payment-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .payment-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(102, 126, 234, 0.25);
+        }
+        .payment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .detail-item {
+            background: rgba(102, 126, 234, 0.08);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        .detail-item:hover {
+            background: rgba(102, 126, 234, 0.12);
+            transform: translateY(-2px);
+        }
+        .detail-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        .detail-item p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .price-new {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #10b981;
+            letter-spacing: -0.5px;
+        }
+        .badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #000;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        /* ====== PENGHUNI SECTION ====== */
+        .penghuni-section {
+            background: #0f1419;
+        }
+        .residents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .resident-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        .resident-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.25);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .resident-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            overflow: hidden;
+        }
+        .resident-info {
+            padding: 2.2rem;
+        }
+        .resident-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1.2rem;
+        }
+        .resident-detail {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.08);
+        }
+        /* ====== SUBMISSIONS SECTION ====== */
+        .submissions-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 12, 27, 0.9) 100%);
+        }
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+        .dashboard-title {
+            font-size: 2rem;
+            color: #e0e0e0;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        /* ====== FILOSOFI SECTION ====== */
+        .filosofi-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.08) 0%, rgba(245, 87, 108, 0.08) 100%);
+        }
+        .filosofi-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 147, 251, 0.15);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .filosofi-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(240, 147, 251, 0.3);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.1);
+            transform: translateY(-4px);
+        }
+        .filosofi-question {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f472b6;
+            margin-bottom: 1.5rem;
+        }
+        .filosofi-answer {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .filosofi-answer.show {
+            max-height: 400px;
+            opacity: 1;
+        }
+        /* ====== MOTIVASI SECTION ====== */
+        .motivasi-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            text-align: center;
+        }
+        .motivasi-quote {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .motivasi-desc {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        /* ====== FOOTER ====== */
+        footer {
+            background: rgba(15, 20, 25, 0.9);
+            padding: 2.5rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #808080;
+            font-size: 0.9rem;
+        }
+        /* ====== NOTIFICATION ====== */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .notification-success {
+            background: rgba(16, 185, 129, 0.9);
+        }
+        .notification-error {
+            background: rgba(239, 68, 68, 0.9);
+        }
+        /* ====== HAMBURGER MENU ====== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+            position: relative;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .toc-toggle {
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 3%;
+            }
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(15, 20, 25, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                padding: 2rem 0;
+                gap: 1rem;
+                z-index: 1000;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+            .toc-toggle {
+                right: 15px;
+                top: 70px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            .toc-sidebar {
+                width: 280px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            section {
+                padding: 3rem 3%;
+            }
+            .residents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+        }
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 2%;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+            .toc-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            .toc-toggle {
+                right: 10px;
+                top: 65px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .hero {
+                margin-top: 60px;
+                padding: 3rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section h2 {
+                font-size: 1.5rem;
+            }
+            section {
+                padding: 2.5rem 2%;
+            }
+            .residents-grid {
+                gap: 1.5rem;
+            }
+            .resident-card {
+                border-radius: 12px;
+            }
+            .visi-container {
+                padding: 2rem;
+            }
+            .filosofi-card {
+                padding: 2rem;
+            }
+            .notification {
+                right: 10px;
+                left: 10px;
+                top: 85px;
+            }
+            .payment-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== TABLE OF CONTENTS ====== -->
+    <div class="toc-overlay" id="tocOverlay"></div>
+    <button class="toc-toggle" id="tocToggle" title="Daftar Isi">
+        <i class="fas fa-bars"></i>
+    </button>
+    <aside class="toc-sidebar" id="tocSidebar">
+        <div class="toc-header">
+            <i class="fas fa-list"></i> Daftar Isi
+        </div>
+        <ul class="toc-list">
+            <li class="toc-item"><a href="#hero" class="toc-link">🏠 Beranda</a></li>
+            <li class="toc-item"><a href="#visi" class="toc-link">🎯 Visi & Misi</a></li>
+            <li class="toc-item"><a href="#pembayaran" class="toc-link">💰 Sistem Pembayaran</a></li>
+            <li class="toc-item"><a href="#penghuni" class="toc-link">👥 Penghuni Kontrakan</a></li>
+            <li class="toc-item"><a href="#submissions" class="toc-link">📊 Dashboard</a></li>
+            <li class="toc-item"><a href="#filosofi" class="toc-link">💭 Filosofi</a></li>
+            <li class="toc-item"><a href="#motivasi" class="toc-link">✨ Motivasi</a></li>
+        </ul>
+    </aside>
+    <!-- ====== NAVIGATION ====== -->
+    <nav>
+        <div class="logo">🏠 Baiti Jannati</div>
+        <ul class="nav-links">
+            <li><a href="#visi">Visi & Misi</a></li>
+            <li><a href="#pembayaran">Pembayaran</a></li>
+            <li><a href="#penghuni">Penghuni</a></li>
+            <li><a href="#submissions">Dashboard</a></li>
+            <li><a href="#filosofi">Filosofi</a></li>
+            <li><a href="#motivasi">Motivasi</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero" id="hero">
+        <video autoplay muted loop class="hero-video-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+            <source src="videokontrakan.mp4" type="video/mp4">
+            Browser Anda tidak mendukung video
+        </video>
+        <div class="hero-content">
+            <h1 id="heroTitle">Baiti Jannati</h1>
+            <button class="cta-button" onclick="document.getElementById('visi').scrollIntoView({behavior: 'smooth'})">Jelajahi Selengkapnya</button>
+        </div>
+    </section>
+    <!-- ====== VISI & MISI SECTION ====== -->
+    <section class="visi-section" id="visi">
+        <h2>Visi & Misi</h2>
+        <div class="visi-container">
+            <div class="visi-quote">"Ngone awak dewe dinggo ngupoyo"</div>
+            <p class="visi-subtitle">Kita bersama-sama untuk maju, berkembang, dan meraih kesuksesan bersama</p>
+            <h3 style="color: #e0e0e0; margin-top: 3rem; margin-bottom: 2rem;">Aturan yang Berlaku</h3>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h3>1️⃣ Hemat Energi</h3>
+                    <p>Hemat penggunaan listrik dan air untuk efisiensi bersama</p>
+                </div>
+                <div class="rule-card">
+                    <h3>2️⃣ Pembayaran Tepat Waktu</h3>
+                    <p>Bayar tepat waktu sesuai kesepakatan untuk kenyamanan bersama</p>
+                </div>
+                <div class="rule-card">
+                    <h3>3️⃣ Kebersihan</h3>
+                    <p>Jaga kebersihan ruang bersama dengan gotong royong</p>
+                </div>
+                <div class="rule-card">
+                    <h3>4️⃣ Waktu & Tenaga</h3>
+                    <p>Hormati waktu dan tenaga setiap penghuni lainnya</p>
+                </div>
+                <div class="rule-card">
+                    <h3>5️⃣ Sumber Daya</h3>
+                    <p>Manfaatkan sumber daya secara optimal dan berkelanjutan</p>
+                </div>
+                <div class="rule-card">
+                    <h3>6️⃣ Gotong Royong</h3>
+                    <p>Bangun kesadaran kolektif untuk kemajuan bersama</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== PEMBAYARAN SECTION ====== -->
+    <section class="pembayaran-section" id="pembayaran">
+        <h2>Sistem Pembayaran</h2>
+        <div class="pembayaran-container">
+            <div class="payment-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>Total Kontrakan per Tahun:</strong>
+                        <br>
+                        <span class="price-new">Rp 16.000.000</span>
+                    </div>
+                    <span class="badge">5 Penghuni</span>
+                </div>
+            </div>
+            <div class="payment-card">
+                <strong style="color: #667eea; display: block; margin-bottom: 2rem;">Per Orang untuk 6 Bulan</strong>
+                <div class="payment-details">
+                    <div class="detail-item">
+                        <strong>Kontrakan (6 Bulan)</strong>
+                        <p>Rp 16.000.000 ÷ 2 ÷ 5 penghuni<br><strong style="color: #10b981;">= Rp 1.142.857</strong></p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Air + Sampah + WiFi</strong>
+                        <p>Rp 18.000 × 6 bulan<br><strong style="color: #10b981;">= Rp 108.000</strong></p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Listrik</strong>
+                        <p>Rp 10.000 × 6 bulan<br><strong style="color: #10b981;">= Rp 60.000</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-card" style="margin-top: 2rem; background: rgba(16, 185, 129, 0.08);">
+                <strong style="color: #10b981; display: block; margin-bottom: 1.5rem;">Total Per Orang (6 Bulan)</strong>
+                <div style="font-size: 2rem; font-weight: 700; color: #10b981; text-align: center;">Rp 1.600.000</div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== PENGHUNI SECTION ====== -->
+    <section class="penghuni-section" id="penghuni">
+        <h2>Penghuni Kontrakan</h2>
+        <div class="residents-grid">
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="wapex.jpeg" alt="Wapex" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Wapex</div>
+                    <div class="resident-detail">Total: <strong>Rp 1.600.000</strong></div>
+                    <div class="resident-detail">Deadline: <strong>31 Des 2025</strong></div>
+                    <div class="resident-detail">Status: <strong style="color: #f59e0b;">Menunggu</strong></div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="faiq.jpeg" alt="Faiq" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Faiq</div>
+                    <div class="resident-detail">Total: <strong>Rp 1.600.000</strong></div>
+                    <div class="resident-detail">Deadline: <strong>31 Des 2025</strong></div>
+                    <div class="resident-detail">Status: <strong style="color: #f59e0b;">Menunggu</strong></div>
+                </div>
+            </div>
+        
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="moden.jpeg" alt="Moden" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Moden</div>
+                    <div class="resident-detail">Total: <strong>Rp 1.600.000</strong></div>
+                    <div class="resident-detail">Deadline: <strong>31 Des 2025</strong></div>
+                    <div class="resident-detail">Status: <strong style="color: #f59e0b;">Menunggu</strong></div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="kamal.jpeg" alt="Kamal" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Kamal</div>
+                    <div class="resident-detail">Total: <strong>Rp 1.600.000</strong></div>
+                    <div class="resident-detail">Deadline: <strong>31 Des 2025</strong></div>
+                    <div class="resident-detail">Status: <strong style="color: #f59e0b;">Menunggu</strong></div>
+                </div>
+            </div>
+            <div class="resident-card">
+                <div class="resident-image">
+                    <img src="algifta.jpeg" alt="Algifta" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="resident-info">
+                    <div class="resident-name">Algifta</div>
+                    <div class="resident-detail">Total: <strong>Rp 1.600.000</strong></div>
+                    <div class="resident-detail">Deadline: <strong>31 Des 2025</strong></div>
+                    <div class="resident-detail">Status: <strong style="color: #f59e0b;">Menunggu</strong></div>
+                </div>
+            </div>
+           
+    </section>
+    <!-- ====== SUBMISSIONS SECTION (DIPERSEDERHANA) ====== -->
+    <section class="submissions-section" id="submissions">
+        <h2>Dashboard Pembayaran</h2>
+        <div class="dashboard-container">
+            <div class="dashboard-title">📄 Status Pembayaran Akan Diupdate Secara Manual</div>
+            <p style="color: #b0b0b0; max-width: 600px; margin: 1rem auto;">
+                Sistem pelaporan saat ini bersifat internal. Silakan hubungi admin langsung untuk konfirmasi.
+            </p>
+        </div>
+    </section>
+    <!-- ====== FILOSOFI SECTION ====== -->
+    <section class="filosofi-section" id="filosofi">
+        <h2>Filosofi Kontrakan</h2>
+        <div class="filosofi-card" onclick="toggleAnswer(this)">
+            <div class="filosofi-question">Apa arti "Baiti Jannati"?</div>
+            <p style="color: #b0b0b0;">🔽 Klik untuk melihat jawaban</p>
+            <div class="filosofi-answer">
+                <strong>Rumahku adalah Surgaku</strong>
+                <p>Baiti Jannati berasal dari bahasa Arab yang berarti "Rumahku adalah Surgaku". Filosofi ini mengajarkan bahwa rumah adalah tempat ternyaman dan terindah, tempat kita membangun kebahagiaan bersama keluarga dan orang-orang tercinta.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ====== MOTIVASI SECTION ====== -->
+    <section class="motivasi-section" id="motivasi">
+        <h2>Motivasi & Inspirasi</h2>
+        <div class="motivasi-quote">Qolil wa Dawim</div>
+        <p style="color: #b0b0b0; margin-bottom: 2rem;">Sedikit tetapi Istiqomah. Konsistensi lebih bermakna dari kesempurnaan.</p>
+        <div class="motivasi-desc">
+            <strong>Filosofi Penghuni</strong>
+            <p>Di Kontrakan Baiti Jannati, kami percaya bahwa kesuksesan dibangun dari langkah-langkah kecil yang konsisten. Setiap penghuni adalah keluarga, setiap langkah adalah kemajuan. Mari wujudkan impian kita dengan semangat gotong royong!</p>
+        </div>
+    </section>
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <p>&copy; 2025 Kontrakan Baiti Jannati. Rumah Impian Bersama | Berjuang Bersama, Sukses Bersama</p>
+    </footer>
+    <script>
+        // ====== HAMBURGER MENU ======
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+            // ====== TYPEWRITER ======
+            const heroTitle = document.getElementById('heroTitle');
+            if (heroTitle) {
+                typeWriter(heroTitle, 'Baiti Jannati', 80);
+            }
+        });
+
+        // ====== TYPEWRITER EFFECT ======
+        function typeWriter(element, text, speed = 100) {
+            element.textContent = '';
+            let i = 0;
+            const type = () => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i++);
+                    setTimeout(type, speed);
+                }
+            };
+            type();
+        }
+
+        // ====== FILOSOFI TOGGLE ======
+        function toggleAnswer(el) {
+            const ans = el.querySelector('.filosofi-answer');
+            if (ans) ans.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
